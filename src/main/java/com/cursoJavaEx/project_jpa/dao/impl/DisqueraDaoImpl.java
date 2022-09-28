@@ -111,4 +111,25 @@ public class DisqueraDaoImpl implements DisqueraDao {
 		
 	}
 
+	@Override
+	public Disquera findByDescripcionJPQL(String descripcion) {
+		EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
+		
+		TypedQuery<Disquera> queryDisquera = (TypedQuery<Disquera>) em.createQuery("FROM Disquera WHERE descripcion = :desc");
+		queryDisquera.setParameter("desc", descripcion);
+		
+		return queryDisquera.getSingleResult();
+	}
+
+	@Override
+	public Disquera findByDescripcionNative(String descripcion) {
+		EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
+		
+		TypedQuery<Disquera> queryDisquera = (TypedQuery<Disquera>)em.createNativeQuery("SELECT * FROM disquera where descripcion =:desc", Disquera.class);
+		queryDisquera.setParameter("desc", descripcion);
+		
+		return queryDisquera.getSingleResult();
+		
+	}
+
 }

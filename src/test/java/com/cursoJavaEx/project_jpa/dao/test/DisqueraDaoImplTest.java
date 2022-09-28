@@ -4,6 +4,7 @@
 package com.cursoJavaEx.project_jpa.dao.test;
 
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.time.LocalDateTime;
@@ -73,6 +74,26 @@ class DisqueraDaoImplTest {
 		});
 		
 		
+	}
+	
+	@Test
+	void findByDescripcionJPQL() {
+		
+		Disquera disqueraConsultada = this.disqueraDao.findByDescripcionJPQL("MegaForce");
+		
+		assertNotNull(disqueraConsultada);
+		
+		System.out.println("Disquera by descripción: " + disqueraConsultada);
+		
+	}
+	
+	@Test
+	void testFindByDescripcionNative() {
+		Disquera disqueraConsultada = this.disqueraDao.findByDescripcionNative("MegaForce");
+		
+		assertNotNull(disqueraConsultada);
+		
+		System.out.println("Disquera by descripción: " + disqueraConsultada);
 	}
 	
 
